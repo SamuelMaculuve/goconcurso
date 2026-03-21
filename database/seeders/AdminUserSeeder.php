@@ -15,10 +15,10 @@ class AdminUserSeeder extends Seeder
     {
         // Super Admin
         $admin = User::updateOrCreate(
-            ['email' => 'admin@goconcursos.ao'],
+            ['email' => 'smaculuve@goconcurso.com'],
             [
                 'name'      => 'Super Admin',
-                'password'  => Hash::make('password'),
+                'password'  => Hash::make('#password#'),
                 'role_type' => 'super-admin',
                 'is_active' => true,
             ]
@@ -27,10 +27,10 @@ class AdminUserSeeder extends Seeder
 
         // Demo Company User
         $companyUser = User::updateOrCreate(
-            ['email' => 'empresa@demo.ao'],
+            ['email' => 'empresa@goconcurso.com'],
             [
                 'name'      => 'Demo Empresa',
-                'password'  => Hash::make('password'),
+                'password'  => Hash::make('#password#'),
                 'role_type' => 'company',
                 'is_active' => true,
             ]
@@ -44,8 +44,8 @@ class AdminUserSeeder extends Seeder
             [
                 'name'         => 'Empresa Demo Lda',
                 'slug'         => 'empresa-demo-lda',
-                'description'  => 'Empresa de demonstração para testes da plataforma GoConcursos.',
-                'email'        => 'empresa@demo.ao',
+                'description'  => 'Empresa de demonstração para testes da plataforma GoConcurso.',
+                'email'        => 'empresa@goconcurso.com',
                 'country'      => 'Angola',
                 'city'         => 'Luanda',
                 'company_type' => 'private',
@@ -57,10 +57,10 @@ class AdminUserSeeder extends Seeder
 
         // Demo Candidate
         $candidate = User::updateOrCreate(
-            ['email' => 'candidato@demo.ao'],
+            ['email' => 'candidato@goconcurso.com'],
             [
                 'name'              => 'João Candidato',
-                'password'          => Hash::make('password'),
+                'password'          => Hash::make('#password#'),
                 'role_type'         => 'candidate',
                 'country'           => 'Angola',
                 'city'              => 'Luanda',

@@ -2,7 +2,7 @@
 
 @section('title', 'Categorias')
 @section('page-title', 'Categorias')
-@section('page-subtitle', 'Gerir categorias de concursos')
+@section('page-subtitle', 'Gerir categorias de Concurso')
 
 @section('content')
 

@@ -9,10 +9,10 @@
 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
     @php
         $statCards = [
-            ['label' => 'Concursos Activos',  'value' => $stats['active_contests'] ?? 0,    'icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', 'color' => 'bg-forest-green', 'text' => 'text-forest-green', 'bg' => 'bg-green-50'],
+            ['label' => 'Concurso Activos',  'value' => $stats['active_contests'] ?? 0,    'icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', 'color' => 'bg-forest-green', 'text' => 'text-forest-green', 'bg' => 'bg-green-50'],
             ['label' => 'Total Candidaturas', 'value' => $stats['total_applications'] ?? 0,  'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', 'color' => 'bg-terracota', 'text' => 'text-terracota', 'bg' => 'bg-orange-50'],
             ['label' => 'Interessados',        'value' => $stats['total_interests'] ?? 0,    'icon' => 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', 'color' => 'bg-golden', 'text' => 'text-yellow-700', 'bg' => 'bg-yellow-50'],
-            ['label' => 'Concursos Expirados','value' => $stats['expired_contests'] ?? 0,   'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'color' => 'bg-gray-500', 'text' => 'text-gray-600', 'bg' => 'bg-gray-50'],
+            ['label' => 'Concurso Expirados','value' => $stats['expired_contests'] ?? 0,   'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'color' => 'bg-gray-500', 'text' => 'text-gray-600', 'bg' => 'bg-gray-50'],
         ];
     @endphp
 
@@ -37,7 +37,7 @@
     {{-- Recent contests --}}
     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
         <div class="flex items-center justify-between mb-4">
-            <h2 class="text-base font-bold text-gray-900">Concursos Recentes</h2>
+            <h2 class="text-base font-bold text-gray-900">Concurso Recentes</h2>
             <a href="{{ route('company.contests.index') }}" class="text-xs text-forest-green font-semibold hover:underline">Ver todos &rarr;</a>
         </div>
 

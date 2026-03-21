@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Início')
+@section('title', 'GoConcurso — Procurement e Concursos em Moçambique')
+@section('seo_description', 'Encontre concursos públicos e privados de fornecimento em Moçambique e África. GoConcurso conecta empresas compradoras a fornecedores de bens e serviços.')
+@section('seo_url', route('home'))
+@section('seo_type', 'website')
 
 @section('content')
 
@@ -22,8 +25,8 @@
             <span class="text-golden">e Prestação de Serviços</span>
         </h1>
         <p class="text-lg text-green-100 max-w-2xl mx-auto mb-10">
-            Plataforma B2B de concursos públicos e privados para aquisição de bens e contratação de serviços em toda a África.
-            Publique concursos ou apresente as suas propostas.
+            Plataforma B2B de Concursos públicos e privados para aquisição de bens e contratação de serviços em toda a África.
+            Publique Concurso ou apresente as suas propostas.
         </p>
 
         {{-- Search bar (Livewire) --}}
@@ -49,7 +52,7 @@
         <div class="grid grid-cols-3 gap-6 text-center">
             <div>
                 <p class="text-3xl font-extrabold text-terracota">{{ $stats['active_contests'] ?? '1.200+' }}</p>
-                <p class="text-sm text-gray-500 mt-1 font-medium">Concursos Ativos</p>
+                <p class="text-sm text-gray-500 mt-1 font-medium">Concurso Ativos</p>
             </div>
             <div>
                 <p class="text-3xl font-extrabold text-forest-green">{{ $stats['companies'] ?? '340+' }}</p>
@@ -67,7 +70,7 @@
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="flex items-center justify-between mb-8">
         <div>
-            <h2 class="text-2xl font-extrabold text-gray-900">Concursos em Destaque</h2>
+            <h2 class="text-2xl font-extrabold text-gray-900">Concurso em Destaque</h2>
             <p class="text-sm text-gray-500 mt-1">Seleccionados especialmente para si</p>
         </div>
         <a href="{{ route('contests.index') }}"
@@ -80,27 +83,12 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        @forelse($featuredContests ?? [] as $contest)
+        @forelse($contests as $contest)
             <x-contest-card :contest="$contest" />
         @empty
-            {{-- Skeleton placeholders --}}
-            @for($i = 0; $i < 6; $i++)
-                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 animate-pulse">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-12 h-12 bg-gray-200 rounded-xl"></div>
-                        <div class="flex-1">
-                            <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                            <div class="h-3 bg-gray-100 rounded w-1/2"></div>
-                        </div>
-                    </div>
-                    <div class="h-3 bg-gray-100 rounded mb-2"></div>
-                    <div class="h-3 bg-gray-100 rounded w-5/6 mb-4"></div>
-                    <div class="flex gap-2">
-                        <div class="h-5 bg-gray-100 rounded-full w-16"></div>
-                        <div class="h-5 bg-gray-100 rounded-full w-20"></div>
-                    </div>
-                </div>
-            @endfor
+            <div class="col-span-3 text-center py-16 text-gray-400">
+                <p class="text-sm">Nenhum concurso disponível de momento.</p>
+            </div>
         @endforelse
     </div>
 </section>
@@ -110,7 +98,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10">
             <h2 class="text-2xl font-extrabold text-gray-900">Explorar por Categoria</h2>
-            <p class="text-sm text-gray-500 mt-2">Encontre concursos de fornecimento na sua área de especialização</p>
+            <p class="text-sm text-gray-500 mt-2">Encontre Concurso de fornecimento na sua área de especialização</p>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -154,7 +142,7 @@
         @php
             $steps = [
                 ['num' => '01', 'title' => 'Registe a sua Empresa',    'desc' => 'Crie a conta da sua empresa gratuitamente como Comprador, Fornecedor ou ambos. Aprovação rápida pelo administrador.', 'color' => 'bg-terracota'],
-                ['num' => '02', 'title' => 'Explore Concursos',        'desc' => 'Pesquise concursos de fornecimento por categoria, localização, orçamento e prazo. Guarde os mais relevantes.', 'color' => 'bg-golden'],
+                ['num' => '02', 'title' => 'Explore Concurso',        'desc' => 'Pesquise Concurso de fornecimento por categoria, localização, orçamento e prazo. Guarde os mais relevantes.', 'color' => 'bg-golden'],
                 ['num' => '03', 'title' => 'Submeta a sua Proposta',   'desc' => 'Apresente a sua proposta técnica e financeira directamente na plataforma. Acompanhe o estado em tempo real.', 'color' => 'bg-forest-green'],
             ];
         @endphp
@@ -192,7 +180,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span class="inline-block bg-white/20 text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-6">Para Empresas Compradoras</span>
         <h2 class="text-3xl font-extrabold text-white mb-4">
-            Publique Concursos e Encontre<br>os Melhores Fornecedores
+            Publique Concurso e Encontre<br>os Melhores Fornecedores
         </h2>
         <p class="text-green-100 mb-8 max-w-xl mx-auto">
             Digitalize o seu processo de procurement. Receba propostas de fornecedores qualificados de toda a África.

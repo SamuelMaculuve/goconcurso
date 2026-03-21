@@ -52,6 +52,10 @@ Route::view('/sobre', 'pages.about')->name('about');
 Route::get('/contacto', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contacto', [HomeController::class, 'sendContact'])->name('contact.send');
 Route::get('/empresas', [HomeController::class, 'companies'])->name('companies');
+Route::get('/ajuda', [HomeController::class, 'help'])->name('help');
+Route::get('/privacidade', [HomeController::class, 'privacy'])->name('privacy');
+Route::get('/termos', [HomeController::class, 'terms'])->name('terms');
+Route::get('/planos', [HomeController::class, 'pricing'])->name('pricing');
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +78,9 @@ Route::middleware('auth')->prefix('perfil')->name('profile.')->group(function ()
 */
 Route::middleware(['auth', 'role:company'])->prefix('empresa')->name('company.')->group(function () {
     Route::get('/dashboard', [CompanyDashboard::class, 'index'])->name('dashboard');
+    Route::get('/candidaturas', [CompanyContestController::class, 'allApplications'])->name('applications.index');
+    Route::get('/interessados', [CompanyContestController::class, 'allInterests'])->name('interests.index');
+    Route::get('/estatisticas', [CompanyDashboard::class, 'statistics'])->name('statistics');
 
     Route::prefix('concursos')->name('contests.')->group(function () {
         Route::get('/', [CompanyContestController::class, 'index'])->name('index');
@@ -103,7 +110,7 @@ Route::middleware(['auth', 'role:super-admin'])->prefix('admin')->name('admin.')
         Route::get('/{id}/editar', [AdminUser::class, 'edit'])->name('edit');
         Route::put('/{id}', [AdminUser::class, 'update'])->name('update');
         Route::delete('/{id}', [AdminUser::class, 'destroy'])->name('destroy');
-        Route::post('/{id}/toggle', [AdminUser::class, 'toggleActive'])->name('toggle');
+        Route::patch('/{id}/toggle', [AdminUser::class, 'toggleActive'])->name('toggle-status');
     });
 
     // Companies

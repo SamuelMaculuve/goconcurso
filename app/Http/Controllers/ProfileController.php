@@ -16,14 +16,25 @@ class ProfileController extends Controller
 
     public function show(): View
     {
-        $user = Auth::user()->load([
-            'savedContests.contest.company',
-            'savedContests.contest.category',
-            'applications.contest.company',
-            'interests.contest.company',
-        ]);
+        $user = Auth::user();
 
-        return view('profile.show', compact('user'));
+        $recentApplications = $user->applications()
+            ->with('contest.company')
+            ->latest()
+            ->limit(5)
+            ->get();
+
+        $applicationsCount = $user->applications()->count();
+        $savedCount        = $user->savedContests()->count();
+        $interestsCount    = $user->interests()->count();
+
+        return view('profile.show', compact(
+            'user',
+            'recentApplications',
+            'applicationsCount',
+            'savedCount',
+            'interestsCount'
+        ));
     }
 
     public function edit(): View

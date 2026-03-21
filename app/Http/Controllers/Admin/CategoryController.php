@@ -11,11 +11,6 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'role:super-admin']);
-    }
-
     public function index(): View
     {
         $categories = ContestCategory::withCount('contests')->orderBy('name')->paginate(20);

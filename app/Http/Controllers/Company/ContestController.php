@@ -16,9 +16,26 @@ use Illuminate\View\View;
 
 class ContestController extends Controller
 {
-    public function __construct()
+    public function allInterests(): View
     {
-        $this->middleware(['auth', 'role:company']);
+        $company = $this->getCompany();
+
+        $interests = ContestInterest::whereHas('contest', function ($q) use ($company) {
+            $q->where('company_id', $company->id);
+        })->with(['user', 'contest'])->latest()->paginate(20);
+
+        return view('company.contests.interests', compact('interests'));
+    }
+
+    public function allApplications(): View
+    {
+        $company = $this->getCompany();
+
+        $applications = ContestApplication::whereHas('contest', function ($q) use ($company) {
+            $q->where('company_id', $company->id);
+        })->with(['user', 'contest'])->latest()->paginate(20);
+
+        return view('company.contests.applications', compact('applications'));
     }
 
     private function getCompany()
@@ -75,7 +92,7 @@ class ContestController extends Controller
         $contest = Contest::create(array_merge($validated, [
             'company_id' => $company->id,
             'slug'       => $slug,
-            'status'     => 'pending',
+            'status'     => 'active',
         ]));
 
         if ($request->hasFile('documents')) {
@@ -91,7 +108,7 @@ class ContestController extends Controller
         }
 
         return redirect()->route('company.contests.index')
-            ->with('success', 'Concurso criado com sucesso! Aguarda aprovação do administrador.');
+            ->with('success', 'Concurso publicado com sucesso! Já está disponível na plataforma.');
     }
 
     public function edit(int $id): View

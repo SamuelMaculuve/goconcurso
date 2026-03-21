@@ -78,7 +78,7 @@
 
             {{-- Max Contests --}}
             <div x-data="{ unlimited: {{ old('max_contests') === null ? 'true' : 'false' }} }">
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">Máximo de Concursos</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Máximo de Concurso</label>
                 <div class="flex items-center gap-3 mb-2">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" x-model="unlimited" name="unlimited_contests" value="1"
@@ -106,7 +106,7 @@
                     <span class="text-gray-400 font-normal">(uma por linha)</span>
                 </label>
                 <textarea id="features" name="features" rows="5"
-                          placeholder="Publicar concursos&#10;Acesso a candidaturas&#10;Suporte prioritário"
+                          placeholder="Publicar Concurso&#10;Acesso a candidaturas&#10;Suporte prioritário"
                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-terracota/40 focus:border-terracota transition font-mono
                                  @error('features') border-red-400 @enderror">{{ old('features') }}</textarea>
                 @error('features')

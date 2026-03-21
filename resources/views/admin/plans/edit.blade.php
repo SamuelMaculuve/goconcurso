@@ -78,7 +78,7 @@
             {{-- Max Contests --}}
             @php $isUnlimited = old('unlimited_contests', $plan->max_contests === null); @endphp
             <div x-data="{ unlimited: {{ $isUnlimited ? 'true' : 'false' }} }">
-                <label class="block text-sm font-medium text-gray-700 mb-1.5">Máximo de Concursos</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Máximo de Concurso</label>
                 <div class="flex items-center gap-3 mb-2">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" x-model="unlimited" name="unlimited_contests" value="1"

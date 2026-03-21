@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Autenticação') – GoConcursos</title>
+    <title>@yield('title', 'Autenticação') – Concurso</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -46,14 +46,14 @@
         <div class="mb-8 text-center">
             <a href="{{ route('home') }}" class="inline-block">
                 <span class="text-3xl font-extrabold text-terracota tracking-tight">
-                    Go<span class="text-forest-green">Concursos</span>
+                    Go<span class="text-forest-green">Concurso</span>
                 </span>
             </a>
             <p class="mt-2 text-sm text-gray-600 font-medium">Oportunidades em toda a África</p>
         </div>
 
         {{-- Card --}}
-        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        <div class="w-full @yield('card_width', 'max-w-md') bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
 
             {{-- Card header stripe --}}
             <div class="h-1.5 w-full" style="background: linear-gradient(90deg, #C0602A, #D4A017, #2D6A4F);"></div>
@@ -73,9 +73,11 @@
 
         {{-- Footer link --}}
         <p class="mt-8 text-xs text-gray-500">
-            &copy; {{ date('Y') }} GoConcursos &mdash;
+            &copy; {{ date('Y') }} GoConcurso &mdash;
             <a href="{{ route('about') }}" class="hover:text-terracota underline">Sobre</a> &middot;
-            <a href="{{ route('contact') }}" class="hover:text-terracota underline">Contacto</a>
+            <a href="{{ route('contact') }}" class="hover:text-terracota underline">Contacto</a> &middot;
+            <a href="{{ route('privacy') }}" class="hover:text-terracota underline">Privacidade</a> &middot;
+            <a href="{{ route('terms') }}" class="hover:text-terracota underline">Termos</a>
         </p>
     </div>
 

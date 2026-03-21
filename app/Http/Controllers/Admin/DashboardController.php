@@ -12,11 +12,6 @@ use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'role:super-admin']);
-    }
-
     public function index(): View
     {
         $totalUsers = User::count();

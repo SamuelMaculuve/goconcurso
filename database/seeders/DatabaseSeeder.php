@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
             PlansSeeder::class,
             CategoriesSeeder::class,
             AdminUserSeeder::class,
-            ContestSeeder::class,
-            DemoDataSeeder::class,
+            //ContestSeeder::class,
+            //DemoDataSeeder::class,
         ]);
     }
 }

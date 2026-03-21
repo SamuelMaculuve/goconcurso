@@ -2,7 +2,7 @@
 
 @section('title', 'Nova Categoria')
 @section('page-title', 'Nova Categoria')
-@section('page-subtitle', 'Adicionar uma nova categoria de concursos')
+@section('page-subtitle', 'Adicionar uma nova categoria de Concurso')
 
 @section('content')
 
@@ -109,7 +109,7 @@
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-700">Activa</p>
-                        <p class="text-xs text-gray-400">Disponível para selecção nos concursos</p>
+                        <p class="text-xs text-gray-400">Disponível para selecção nos Concurso</p>
                     </div>
                 </label>
             </div>

@@ -7,7 +7,7 @@
         <input
             wire:model.defer="search"
             type="text"
-            placeholder="Pesquisar concursos, vagas, bolsas..."
+            placeholder="Pesquisar Concurso, vagas, bolsas..."
             class="w-full py-4 text-gray-800 placeholder-gray-400 focus:outline-none text-sm sm:text-base"
         />
     </div>

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Concursos')
-@section('page-title', 'Concursos')
-@section('page-subtitle', 'Moderação e gestão de concursos')
+@section('title', 'Concurso')
+@section('page-title', 'Concurso')
+@section('page-subtitle', 'Moderação e gestão de Concurso')
 
 @section('content')
 

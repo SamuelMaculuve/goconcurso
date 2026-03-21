@@ -152,7 +152,7 @@
                 <div class="text-4xl mb-3">📋</div>
                 <p class="text-sm">Ainda não submeteu propostas.</p>
                 <a href="{{ route('contests.index') }}" class="mt-3 inline-block text-sm text-[#C0602A] hover:underline">
-                    Explorar concursos
+                    Explorar Concurso
                 </a>
             </div>
         @endif

@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    {{-- Total Concursos --}}
+    {{-- Total Concurso --}}
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-center gap-4">
         <div class="w-12 h-12 rounded-xl bg-forest-green/10 flex items-center justify-center flex-shrink-0">
             <svg class="w-6 h-6 text-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,7 +47,7 @@
         </div>
         <div>
             <p class="text-2xl font-extrabold text-gray-800">{{ number_format($stats['contests'] ?? 0) }}</p>
-            <p class="text-sm text-gray-500 mt-0.5">Total Concursos</p>
+            <p class="text-sm text-gray-500 mt-0.5">Total Concurso</p>
         </div>
     </div>
 
@@ -82,7 +82,7 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col gap-4">
         <h2 class="text-base font-semibold text-gray-700">Resumo Rápido</h2>
         <div class="flex items-center justify-between py-3 border-b border-gray-50">
-            <span class="text-sm text-gray-500">Concursos Pendentes</span>
+            <span class="text-sm text-gray-500">Concurso Pendentes</span>
             <span class="text-sm font-semibold text-golden bg-golden/10 px-2.5 py-0.5 rounded-full">{{ $stats['pending_contests'] ?? 0 }}</span>
         </div>
         <div class="flex items-center justify-between py-3 border-b border-gray-50">
@@ -90,7 +90,7 @@
             <span class="text-sm font-semibold text-terracota bg-terracota/10 px-2.5 py-0.5 rounded-full">{{ $stats['unverified_companies'] ?? 0 }}</span>
         </div>
         <div class="flex items-center justify-between py-3 border-b border-gray-50">
-            <span class="text-sm text-gray-500">Concursos Activos</span>
+            <span class="text-sm text-gray-500">Concurso Activos</span>
             <span class="text-sm font-semibold text-forest-green bg-forest-green/10 px-2.5 py-0.5 rounded-full">{{ $stats['active_contests'] ?? 0 }}</span>
         </div>
         <div class="flex items-center justify-between py-3">
@@ -104,7 +104,7 @@
 {{-- Recent Contests Table --}}
 <div class="mt-6 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-        <h2 class="text-base font-semibold text-gray-700">Concursos Recentes</h2>
+        <h2 class="text-base font-semibold text-gray-700">Concurso Recentes</h2>
         <a href="{{ route('admin.contests.index') }}" class="text-sm text-terracota hover:underline font-medium">Ver todos</a>
     </div>
     <div class="overflow-x-auto">

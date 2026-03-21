@@ -44,12 +44,12 @@ class HomeController extends Controller
             ->get();
 
         $stats = [
-            'contests'   => Contest::where('status', 'active')->count(),
-            'companies'  => Company::where('is_active', true)->count(),
-            'candidates' => User::role('candidate')->count(),
+            'active_contests' => Contest::where('status', 'active')->count(),
+            'companies'       => Company::where('is_active', true)->count(),
+            'candidates'      => User::role('candidate')->count(),
         ];
 
-        return view('home', compact('contests', 'categories', 'ads', 'stats'));
+        return view('home', compact('contests', 'featuredContests', 'categories', 'ads', 'stats'));
     }
 
     public function contact(): View
@@ -70,12 +70,33 @@ class HomeController extends Controller
         Mail::raw(
             "De: {$validated['name']} <{$validated['email']}>\n\n{$validated['message']}",
             function ($msg) use ($validated) {
-                $msg->to(config('mail.from.address', 'info@goconcursos.ao'))
+                $msg->to(config('mail.from.address', 'info@GoConcurso.ao'))
                     ->subject("Contacto: {$validated['subject']}");
             }
         );
 
         return redirect()->route('contact')->with('success', 'Mensagem enviada com sucesso! Responderemos em breve.');
+    }
+
+    public function help(): View
+    {
+        return view('pages.help');
+    }
+
+    public function privacy(): View
+    {
+        return view('pages.privacy');
+    }
+
+    public function terms(): View
+    {
+        return view('pages.terms');
+    }
+
+    public function pricing(): View
+    {
+        $plans = \App\Models\Plan::where('is_active', true)->orderBy('price')->get();
+        return view('pages.pricing', compact('plans'));
     }
 
     public function companies(): View

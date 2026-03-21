@@ -1,6 +1,51 @@
 @extends('layouts.app')
 
-@section('title', $contest->title ?? 'Concurso')
+@section('title', $contest->title)
+@section('seo_description', \Illuminate\Support\Str::limit(strip_tags($contest->description ?? ''), 155) ?: 'Concurso de fornecimento publicado em GoConcurso — a plataforma de procurement em Moçambique.')
+@section('seo_url', route('contests.show', $contest->slug))
+@section('seo_type', 'article')
+@section('seo_image', $contest->company->logo ? asset('storage/' . $contest->company->logo) : null)
+@section('seo_published', $contest->created_at->toIso8601String())
+@section('seo_modified',  $contest->updated_at->toIso8601String())
+
+@section('seo_breadcrumbs')
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início",    "item": "{{ route('home') }}" },
+        { "@type": "ListItem", "position": 2, "name": "Concursos", "item": "{{ route('contests.index') }}" },
+        { "@type": "ListItem", "position": 3, "name": "{{ addslashes($contest->title) }}", "item": "{{ route('contests.show', $contest->slug) }}" }
+    ]
+}
+@endsection
+
+@section('seo_schema')
+{
+    "@context": "https://schema.org",
+    "@type": "GovernmentService",
+    "name": "{{ addslashes($contest->title) }}",
+    "description": "{{ \Illuminate\Support\Str::limit(strip_tags(addslashes($contest->description ?? '')), 200) }}",
+    "url": "{{ route('contests.show', $contest->slug) }}",
+    "serviceType": "Concurso de Fornecimento",
+    "areaServed": {
+        "@type": "Country",
+        "name": "{{ $contest->company->country ?? 'Moçambique' }}"
+    },
+    "provider": {
+        "@type": "Organization",
+        "name": "{{ addslashes($contest->company->name ?? 'GoConcurso') }}",
+        "url": "{{ config('app.url') }}"
+    },
+    "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "validThrough": "{{ $contest->deadline ? $contest->deadline->toIso8601String() : '' }}",
+        "url": "{{ route('contests.show', $contest->slug) }}"
+    },
+    "datePosted": "{{ $contest->created_at->toIso8601String() }}"
+}
+@endsection
 
 @section('content')
 
@@ -14,7 +59,7 @@
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
-            <a href="{{ route('contests.index') }}" class="hover:text-terracota transition">Concursos</a>
+            <a href="{{ route('contests.index') }}" class="hover:text-terracota transition">Concurso</a>
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
@@ -313,7 +358,7 @@
     {{-- Related contests --}}
     @if(isset($relatedContests) && $relatedContests->count())
     <div class="mt-12">
-        <h2 class="text-xl font-extrabold text-gray-900 mb-6">Concursos Relacionados</h2>
+        <h2 class="text-xl font-extrabold text-gray-900 mb-6">Concurso Relacionados</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($relatedContests as $related)
                 <x-contest-card :contest="$related" />

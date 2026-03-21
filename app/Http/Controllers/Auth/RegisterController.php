@@ -44,7 +44,7 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect()->route('profile.show')
-            ->with('success', 'Conta criada com sucesso! Bem-vindo ao GoConcursos.');
+            ->with('success', 'Conta criada com sucesso! Bem-vindo ao GoConcurso.');
     }
 
     public function showCompanyForm(): View
@@ -98,6 +98,6 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect()->route('company.dashboard')
-            ->with('success', 'Empresa registada com sucesso! Bem-vindo ao GoConcursos.');
+            ->with('success', 'Empresa registada com sucesso! Bem-vindo ao GoConcurso.');
     }
 }

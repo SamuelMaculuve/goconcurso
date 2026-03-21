@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Concursos Guardados')
+@section('title', 'Concurso Guardados')
 
 @section('content')
 <div class="max-w-5xl mx-auto px-4 py-10">
@@ -12,7 +12,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             </a>
-            <h1 class="text-2xl font-bold text-gray-800">Concursos Guardados</h1>
+            <h1 class="text-2xl font-bold text-gray-800">Concurso Guardados</h1>
         </div>
         @if(isset($savedContests) && $savedContests->total() > 0)
             <span class="text-sm text-gray-500">{{ $savedContests->total() }} guardado(s)</span>
@@ -39,7 +39,7 @@
             </div>
             <h3 class="text-lg font-semibold text-gray-700 mb-2">Nenhum concurso guardado</h3>
             <p class="text-sm text-gray-500 max-w-sm mx-auto mb-6">
-                Guarde concursos interessantes para os rever mais tarde. Clique no icone de marcador em qualquer concurso.
+                Guarde Concurso interessantes para os rever mais tarde. Clique no icone de marcador em qualquer concurso.
             </p>
             <a href="{{ route('contests.index') }}"
                 class="inline-flex items-center gap-2 bg-[#C0602A] hover:bg-[#a8521f] text-white text-sm font-medium px-5 py-2.5 rounded-lg transition">
@@ -47,7 +47,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                 </svg>
-                Explorar concursos
+                Explorar Concurso
             </a>
         </div>
     @endif

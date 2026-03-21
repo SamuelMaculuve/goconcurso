@@ -1,7 +1,7 @@
 @extends('layouts.company')
 
-@section('title', 'Meus Concursos')
-@section('page-title', 'Meus Concursos')
+@section('title', 'Meus Concurso')
+@section('page-title', 'Meus Concurso')
 
 @section('content')
 

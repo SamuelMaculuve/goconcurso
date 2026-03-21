@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Empresa') – GoConcursos</title>
+    <title>@yield('title', 'Empresa') – Concurso</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -35,7 +35,7 @@
         {{-- Logo --}}
         <div class="flex items-center gap-2 px-6 py-5 border-b border-white/20">
             <a href="{{ route('home') }}" class="text-xl font-extrabold text-sand tracking-tight">
-                Go<span class="text-golden">Concursos</span>
+                Go<span class="text-golden">Concurso</span>
             </a>
             <span class="ml-auto text-xs bg-golden text-gray-900 px-2 py-0.5 rounded-full font-semibold">Empresa</span>
         </div>
@@ -71,7 +71,7 @@
             @php
                 $companyLinks = [
                     ['route' => 'company.dashboard',             'label' => 'Dashboard',          'icon' => 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'],
-                    ['route' => 'company.contests.index',        'label' => 'Meus Concursos',     'icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2'],
+                    ['route' => 'company.contests.index',        'label' => 'Meus Concurso',     'icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2'],
                     ['route' => 'company.contests.create',       'label' => 'Publicar Concurso',  'icon' => 'M12 4v16m8-8H4'],
                     ['route' => 'company.interests.index',       'label' => 'Interessados',       'icon' => 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'],
                     ['route' => 'company.applications.index',    'label' => 'Candidaturas',       'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z'],

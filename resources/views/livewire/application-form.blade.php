@@ -175,7 +175,7 @@
             <div class="rounded-lg bg-[#F5E6C8]/60 border border-[#D4A017]/30 px-4 py-3">
                 <p class="text-xs text-gray-600 leading-relaxed">
                     Ao submeter esta proposta, confirma que os dados e documentos fornecidos são verdadeiros e autoriza
-                    a <strong>GoConcursos</strong> a partilhá-los com a entidade contratante.
+                    a <strong>Concurso</strong> a partilhá-los com a entidade contratante.
                 </p>
             </div>
 

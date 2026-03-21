@@ -10,11 +10,6 @@ use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'role:super-admin']);
-    }
-
     public function index(Request $request): View
     {
         $query = Company::with(['user', 'plan']);

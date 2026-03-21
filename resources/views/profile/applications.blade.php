@@ -110,7 +110,7 @@
                 </div>
                 <h3 class="text-lg font-semibold text-gray-700 mb-2">Nenhuma proposta submetida ainda</h3>
                 <p class="text-sm text-gray-500 max-w-sm mx-auto mb-6">
-                    Ainda não submeteu nenhuma proposta. Explore os concursos disponíveis e apresente a sua proposta hoje.
+                    Ainda não submeteu nenhuma proposta. Explore os Concurso disponíveis e apresente a sua proposta hoje.
                 </p>
                 <a href="{{ route('contests.index') }}"
                     class="inline-flex items-center gap-2 bg-[#C0602A] hover:bg-[#a8521f] text-white text-sm font-medium px-5 py-2.5 rounded-lg transition">
@@ -118,7 +118,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    Explorar concursos
+                    Explorar Concurso
                 </a>
             </div>
         @endif

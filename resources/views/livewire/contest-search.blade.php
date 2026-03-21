@@ -16,7 +16,7 @@
                     <input
                         wire:model.live.debounce.400ms="search"
                         type="text"
-                        placeholder="Buscar concursos, fornecimentos, serviços..."
+                        placeholder="Buscar Concurso, fornecimentos, serviços..."
                         class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[#F5E6C8] bg-[#F5E6C8]/30
                                focus:outline-none focus:ring-2 focus:ring-[#C0602A] focus:border-transparent
                                text-gray-800 placeholder-gray-400 transition"

@@ -11,11 +11,6 @@ use Illuminate\View\View;
 
 class PlanController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'role:super-admin']);
-    }
-
     public function index(): View
     {
         $plans = Plan::withCount('companies')->orderBy('price')->get();

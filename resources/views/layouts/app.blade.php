@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'GoConcursos') – Oportunidades em África</title>
-
+    <title>@yield('title', 'GoConcurso') — Procurement em Moçambique e África</title>
+    @include('layouts.inc.seo')
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,13 +34,13 @@
 
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex items-center gap-2">
-                    <span class="text-2xl font-extrabold text-terracota tracking-tight">Go<span class="text-forest-green">Concursos</span></span>
+                    <span class="text-2xl font-extrabold text-terracota tracking-tight">Go<span class="text-forest-green">Concurso</span></span>
                 </a>
 
                 {{-- Desktop nav links --}}
                 <div class="hidden md:flex items-center gap-6">
                     <a href="{{ route('home') }}" class="text-sm font-medium text-gray-700 hover:text-terracota transition">Início</a>
-                    <a href="{{ route('contests.index') }}" class="text-sm font-medium text-gray-700 hover:text-terracota transition">Concursos</a>
+                    <a href="{{ route('contests.index') }}" class="text-sm font-medium text-gray-700 hover:text-terracota transition">Concurso</a>
                     <a href="{{ route('companies') }}" class="text-sm font-medium text-gray-700 hover:text-terracota transition">Empresas</a>
                     <a href="{{ route('about') }}" class="text-sm font-medium text-gray-700 hover:text-terracota transition">Sobre</a>
                     <a href="{{ route('contact') }}" class="text-sm font-medium text-gray-700 hover:text-terracota transition">Contacto</a>
@@ -154,7 +154,7 @@
         <div class="md:hidden hidden bg-white border-t border-gray-100" id="mobile-menu">
             <div class="px-4 py-3 space-y-1">
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sand">Início</a>
-                <a href="{{ route('contests.index') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sand">Concursos</a>
+                <a href="{{ route('contests.index') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sand">Concurso</a>
                 <a href="{{ route('companies') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sand">Empresas</a>
                 <a href="{{ route('about') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sand">Sobre</a>
                 <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-sand">Contacto</a>
@@ -186,14 +186,14 @@
     </main>
 
     {{-- ===== FOOTER ===== --}}
-    <footer class="bg-gray-900 text-gray-300 mt-16">
+    <footer class="bg-gray-900 text-gray-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 {{-- Brand --}}
                 <div class="col-span-1 md:col-span-1">
-                    <span class="text-2xl font-extrabold text-terracota">Go<span class="text-sand">Concursos</span></span>
+                    <span class="text-2xl font-extrabold text-terracota">Go<span class="text-sand">Concurso</span></span>
                     <p class="mt-3 text-sm text-gray-400 leading-relaxed">
-                        A plataforma líder de concursos e oportunidades profissionais em África.
+                        A plataforma líder de Concurso e oportunidades profissionais em África.
                     </p>
                     <div class="flex gap-3 mt-4">
                         <a href="#" class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-terracota transition">
@@ -209,7 +209,7 @@
                 <div>
                     <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Plataforma</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('contests.index') }}" class="hover:text-terracota transition">Concursos</a></li>
+                        <li><a href="{{ route('contests.index') }}" class="hover:text-terracota transition">Concurso</a></li>
                         <li><a href="{{ route('companies') }}" class="hover:text-terracota transition">Empresas</a></li>
                         <li><a href="{{ route('about') }}" class="hover:text-terracota transition">Sobre Nós</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-terracota transition">Contacto</a></li>
@@ -219,25 +219,25 @@
                 <div>
                     <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Para Empresas</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="{{ route('register') }}" class="hover:text-terracota transition">Registar Empresa</a></li>
-                        <li><a href="#" class="hover:text-terracota transition">Publicar Concurso</a></li>
-                        <li><a href="#" class="hover:text-terracota transition">Planos e Preços</a></li>
+                        <li><a href="{{ route('register.company') }}" class="hover:text-terracota transition">Registar Empresa</a></li>
+                        <li><a href="{{ route('pricing') }}" class="hover:text-terracota transition">Planos e Preços</a></li>
+                        <li><a href="{{ route('about') }}" class="hover:text-terracota transition">Sobre Nós</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">Suporte</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-terracota transition">Centro de Ajuda</a></li>
+                        <li><a href="{{ route('help') }}" class="hover:text-terracota transition">Centro de Ajuda</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-terracota transition">Fale Connosco</a></li>
-                        <li><a href="#" class="hover:text-terracota transition">Política de Privacidade</a></li>
-                        <li><a href="#" class="hover:text-terracota transition">Termos de Uso</a></li>
+                        <li><a href="{{ route('privacy') }}" class="hover:text-terracota transition">Política de Privacidade</a></li>
+                        <li><a href="{{ route('terms') }}" class="hover:text-terracota transition">Termos de Uso</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500">
-                &copy; {{ date('Y') }} GoConcursos. Todos os direitos reservados. Feito com ❤️ para África.
+                &copy; {{ date('Y') }} GoConcurso. Todos os direitos reservados. Feito com para África.
             </div>
         </div>
     </footer>

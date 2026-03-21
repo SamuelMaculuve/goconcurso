@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Empresas Parceiras')
+@section('title', 'Empresas em Moçambique — GoConcurso')
+@section('seo_description', 'Explore as empresas verificadas que publicam concursos de fornecimento em Moçambique e África no GoConcurso. Encontre oportunidades de negócio.')
+@section('seo_url', route('companies'))
+@section('seo_type', 'website')
 
 @section('content')
 {{-- Header --}}
 <section class="bg-gradient-to-br from-[#2D6A4F] to-[#1a4030] text-white py-14">
     <div class="max-w-5xl mx-auto px-4 text-center">
         <h1 class="text-3xl font-bold mb-2">Empresas Parceiras</h1>
-        <p class="text-green-100">Conheça as organizações que publicam oportunidades no GoConcursos</p>
+        <p class="text-green-100">Conheça as organizações que publicam oportunidades no Concurso</p>
     </div>
 </section>
 

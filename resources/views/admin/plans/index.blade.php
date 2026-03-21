@@ -27,7 +27,7 @@
                     <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Nome</th>
                     <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Preço</th>
                     <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Facturação</th>
-                    <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Máx. Concursos</th>
+                    <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Máx. Concurso</th>
                     <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Destaque</th>
                     <th class="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Activo</th>
                     <th class="text-right px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Acções</th>

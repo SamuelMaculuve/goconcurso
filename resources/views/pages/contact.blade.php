@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Contacto')
+@section('title', 'Fale Connosco — GoConcurso')
+@section('seo_description', 'Entre em contacto com a equipa GoConcurso. Estamos disponíveis para responder às suas questões sobre procurement, concursos de fornecimento e a plataforma.')
+@section('seo_url', route('contact'))
+@section('seo_type', 'website')
 
 @section('content')
 <div class="bg-[#F5E6C8] py-14">
@@ -100,8 +103,8 @@
                         </div>
                         <div>
                             <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Email</p>
-                            <a href="mailto:info@goconcursos.ao" class="text-sm text-[#C0602A] hover:underline">
-                                info@goconcursos.ao
+                            <a href="mailto:info@goconcurso.com" class="text-sm text-[#C0602A] hover:underline">
+                                info@goconcurso.com
                             </a>
                         </div>
                     </div>
@@ -127,7 +130,7 @@
                         </div>
                         <div>
                             <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide">Localizacao</p>
-                            <p class="text-sm text-gray-700">Luanda, Angola</p>
+                            <p class="text-sm text-gray-700">Maputo, Moçambique</p>
                         </div>
                     </div>
                 </div>
