@@ -215,7 +215,7 @@
                             <div class="flex items-center gap-1.5">
                                 @if($contest->deadline)
                                     @php
-                                        $daysLeft = now()->diffInDays($contest->deadline, false);
+                                        $daysLeft = (int) floor(now()->diffInDays($contest->deadline, false));
                                         $deadlineColor = $daysLeft <= 7
                                             ? 'text-red-600 bg-red-50 border-red-200'
                                             : ($daysLeft <= 30

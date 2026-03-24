@@ -51,11 +51,13 @@
                     </select>
                 </div>
 
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1.5">Localização *</label>
-                    <input type="text" name="location" value="{{ old('location', $contest->location) }}" required
-                           class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracota/30 focus:border-terracota transition">
-                </div>
+                <x-location-select
+                    country-name="country"
+                    city-name="city"
+                    :country-value="old('country', $contest->country ?? '')"
+                    :city-value="old('city', $contest->city ?? '')"
+                    :required="true"
+                />
 
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1.5">Prazo</label>
@@ -85,6 +87,30 @@
                     </select>
                 </div>
 
+                {{-- Accepts Proposals toggle --}}
+                <div class="col-span-full"
+                     x-data="{ acceptsProposals: {{ old('accepts_proposals', $contest->accepts_proposals ?? true) ? 'true' : 'false' }} }">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Submissão de Propostas</label>
+                    <label class="flex items-start gap-4 p-4 rounded-xl border cursor-pointer hover:border-terracota/40 transition"
+                           :class="acceptsProposals ? 'border-terracota/50 bg-terracota/5' : 'border-gray-200 bg-gray-50'"
+                           @click="acceptsProposals = !acceptsProposals">
+                        <div class="flex-shrink-0 mt-0.5">
+                            <div class="w-10 h-6 rounded-full transition-colors duration-200 relative"
+                                 :class="acceptsProposals ? 'bg-terracota' : 'bg-gray-300'">
+                                <div class="absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200"
+                                     :class="acceptsProposals ? 'translate-x-5' : 'translate-x-1'"></div>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-sm font-semibold text-gray-800"
+                               x-text="acceptsProposals ? 'Aceitar submissão de propostas' : 'Não aceitar propostas'"></p>
+                            <p class="text-xs text-gray-500 mt-0.5"
+                               x-text="acceptsProposals ? 'Fornecedores poderão submeter propostas directamente na plataforma.' : 'O concurso é apenas informativo. Não serão aceites propostas pela plataforma.'"></p>
+                        </div>
+                        <input type="hidden" name="accepts_proposals" :value="acceptsProposals ? '1' : '0'">
+                    </label>
+                </div>
+
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1.5">Estado</label>
                     <select name="status"
@@ -112,23 +138,22 @@
             </h2>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Descrição *</label>
-                <textarea name="description" rows="6" required
-                          class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracota/30 focus:border-terracota transition resize-none @error('description') border-red-400 @enderror">{{ old('description', $contest->description) }}</textarea>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Descrição <span class="text-red-500">*</span></label>
+                <div id="editor-description" class="quill-editor rounded-xl border border-gray-200 @error('description') border-red-400 @enderror" style="min-height:160px"></div>
+                <textarea name="description" id="textarea-description" class="hidden" required>{{ old('description', $contest->description) }}</textarea>
                 @error('description') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Requisitos</label>
-                <textarea name="requirements" rows="5"
-                          class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracota/30 focus:border-terracota transition resize-none">{{ old('requirements', $contest->requirements ?? '') }}</textarea>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Requisitos <span class="text-gray-400 font-normal text-xs">(opcional)</span></label>
+                <div id="editor-requirements" class="quill-editor rounded-xl border border-gray-200" style="min-height:120px"></div>
+                <textarea name="requirements" id="textarea-requirements" class="hidden">{{ old('requirements', $contest->requirements ?? '') }}</textarea>
             </div>
 
             <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Critérios de Avaliação</label>
-                <textarea name="benefits" rows="4"
-                          placeholder="Ex: Experiência comprovada, certificações relevantes, relação qualidade-preço..."
-                          class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracota/30 focus:border-terracota transition resize-none">{{ old('benefits', $contest->benefits ?? '') }}</textarea>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Critérios de Avaliação <span class="text-gray-400 font-normal text-xs">(opcional)</span></label>
+                <div id="editor-benefits" class="quill-editor rounded-xl border border-gray-200" style="min-height:100px"></div>
+                <textarea name="benefits" id="textarea-benefits" class="hidden">{{ old('benefits', $contest->benefits ?? '') }}</textarea>
             </div>
         </div>
 
@@ -182,3 +207,53 @@
 </div>
 
 @endsection
+
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+<style>
+.quill-editor .ql-container { font-size: 0.875rem; font-family: inherit; border: none; border-radius: 0 0 0.75rem 0.75rem; }
+.quill-editor .ql-toolbar { border: none; border-bottom: 1px solid #e5e7eb; border-radius: 0.75rem 0.75rem 0 0; background: #f9fafb; }
+.quill-editor { border-radius: 0.75rem; overflow: hidden; }
+.quill-editor .ql-editor { min-height: 120px; }
+.quill-editor .ql-editor.ql-blank::before { font-style: normal; color: #9ca3af; }
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<script>
+(function () {
+    const toolbar = [
+        ['bold', 'italic', 'underline'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'header': [2, 3, false] }],
+        ['link', 'clean']
+    ];
+
+    function initQuill(editorId, textareaId, placeholder) {
+        const textarea = document.getElementById(textareaId);
+        const quill = new Quill('#' + editorId, {
+            theme: 'snow',
+            placeholder: placeholder,
+            modules: { toolbar }
+        });
+
+        if (textarea.value.trim()) {
+            quill.root.innerHTML = textarea.value;
+        }
+
+        textarea.form.addEventListener('submit', function () {
+            textarea.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
+        });
+
+        return quill;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        initQuill('editor-description',  'textarea-description',  'Descreva o concurso...');
+        initQuill('editor-requirements', 'textarea-requirements', 'Liste os requisitos obrigatórios...');
+        initQuill('editor-benefits',     'textarea-benefits',     'Ex: 60% preço, 30% qualidade técnica...');
+    });
+})();
+</script>
+@endpush

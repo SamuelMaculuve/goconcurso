@@ -72,6 +72,7 @@ class ContestController extends Controller
             'category_id'        => ['required', 'exists:contest_categories,id'],
             'contest_type'       => ['required', 'string', 'in:public_contest,tender,project_call,consulting'],
             'participation_type' => ['required', 'string', 'in:info_only,interest_submission,full_application'],
+            'accepts_proposals'  => ['nullable', 'boolean'],
             'location_type'      => ['nullable', 'string', 'in:local,national,international,remote'],
             'country'            => ['nullable', 'string', 'max:100'],
             'city'               => ['nullable', 'string', 'max:100'],
@@ -87,6 +88,7 @@ class ContestController extends Controller
             'documents.*'        => ['file', 'mimes:pdf,doc,docx', 'max:5120'],
         ]);
 
+        $validated['accepts_proposals'] = $request->boolean('accepts_proposals');
         $slug = Str::slug($validated['title']) . '-' . Str::random(6);
 
         $contest = Contest::create(array_merge($validated, [
@@ -130,6 +132,7 @@ class ContestController extends Controller
             'category_id'        => ['required', 'exists:contest_categories,id'],
             'contest_type'       => ['required', 'string', 'in:public_contest,tender,project_call,consulting'],
             'participation_type' => ['required', 'string', 'in:info_only,interest_submission,full_application'],
+            'accepts_proposals'  => ['nullable', 'boolean'],
             'location_type'      => ['nullable', 'string', 'in:local,national,international,remote'],
             'country'            => ['nullable', 'string', 'max:100'],
             'city'               => ['nullable', 'string', 'max:100'],
@@ -143,6 +146,7 @@ class ContestController extends Controller
             'external_url'       => ['nullable', 'url', 'max:500'],
         ]);
 
+        $validated['accepts_proposals'] = $request->boolean('accepts_proposals');
         $contest->update($validated);
 
         return redirect()->route('company.contests.index')

@@ -10,35 +10,35 @@
 
 @section('seo_breadcrumbs')
 {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    "@@context": "https://schema.org",
+    "@@type": "BreadcrumbList",
     "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Início",    "item": "{{ route('home') }}" },
-        { "@type": "ListItem", "position": 2, "name": "Concursos", "item": "{{ route('contests.index') }}" },
-        { "@type": "ListItem", "position": 3, "name": "{{ addslashes($contest->title) }}", "item": "{{ route('contests.show', $contest->slug) }}" }
+        { "@@type": "ListItem", "position": 1, "name": "Início",    "item": "{{ route('home') }}" },
+        { "@@type": "ListItem", "position": 2, "name": "Concursos", "item": "{{ route('contests.index') }}" },
+        { "@@type": "ListItem", "position": 3, "name": "{{ addslashes($contest->title) }}", "item": "{{ route('contests.show', $contest->slug) }}" }
     ]
 }
 @endsection
 
 @section('seo_schema')
 {
-    "@context": "https://schema.org",
-    "@type": "GovernmentService",
+    "@@context": "https://schema.org",
+    "@@type": "GovernmentService",
     "name": "{{ addslashes($contest->title) }}",
     "description": "{{ \Illuminate\Support\Str::limit(strip_tags(addslashes($contest->description ?? '')), 200) }}",
     "url": "{{ route('contests.show', $contest->slug) }}",
     "serviceType": "Concurso de Fornecimento",
     "areaServed": {
-        "@type": "Country",
+        "@@type": "Country",
         "name": "{{ $contest->company->country ?? 'Moçambique' }}"
     },
     "provider": {
-        "@type": "Organization",
+        "@@type": "Organization",
         "name": "{{ addslashes($contest->company->name ?? 'GoConcurso') }}",
         "url": "{{ config('app.url') }}"
     },
     "offers": {
-        "@type": "Offer",
+        "@@type": "Offer",
         "availability": "https://schema.org/InStock",
         "validThrough": "{{ $contest->deadline ? $contest->deadline->toIso8601String() : '' }}",
         "url": "{{ route('contests.show', $contest->slug) }}"
@@ -200,15 +200,39 @@
                     @break
 
                     @case('interest_submission')
-                        @livewire('interest-form', ['contest' => $contest])
+                        @if($contest->accepts_proposals)
+                            @livewire('interest-form', ['contest' => $contest])
+                        @else
+                            <div class="text-center py-6">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                                    </svg>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-700">Submissões encerradas</p>
+                                <p class="text-xs text-gray-400 mt-1">Este concurso não está a aceitar submissões de interesse.</p>
+                            </div>
+                        @endif
                     @break
 
                     @case('full_application')
-                        @auth
-                            @livewire('application-form', ['contest' => $contest])
+                        @if($contest->accepts_proposals)
+                            @auth
+                                @livewire('application-form', ['contest' => $contest])
+                            @else
+                                @livewire('interest-form', ['contest' => $contest])
+                            @endauth
                         @else
-                            @livewire('interest-form', ['contest' => $contest])
-                        @endauth
+                            <div class="text-center py-6">
+                                <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 715.636 5.636m12.728 12.728L5.636 5.636"/>
+                                    </svg>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-700">Submissão de propostas encerrada</p>
+                                <p class="text-xs text-gray-400 mt-1">A empresa não está a aceitar propostas pela plataforma neste momento.</p>
+                            </div>
+                        @endif
                     @break
 
                 @endswitch

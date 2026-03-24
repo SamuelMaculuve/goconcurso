@@ -2,7 +2,7 @@
 
 @php
     $deadline = isset($contest->deadline) ? \Carbon\Carbon::parse($contest->deadline) : null;
-    $daysLeft = $deadline ? now()->diffInDays($deadline, false) : null;
+    $daysLeft = $deadline ? (int) floor(now()->diffInDays($deadline, false)) : null;
     $isExpired = $daysLeft !== null && $daysLeft < 0;
     $isUrgent  = $daysLeft !== null && $daysLeft >= 0 && $daysLeft <= 5;
 @endphp
@@ -51,53 +51,56 @@
         @endif
 
         {{-- Tags row --}}
-        <div class="flex flex-wrap items-center gap-2 mb-4">
-            {{-- Category --}}
+        <div class="flex flex-wrap items-center gap-1.5 mb-4">
             <x-badge :type="$contest->category->slug ?? 'default'" :label="$contest->category->name ?? 'Geral'" />
 
-            {{-- Participation type --}}
             @switch($contest->participation_type ?? '')
                 @case('full_application')
-                    <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Candidatura</span>
+                    <span class="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full font-medium">Candidatura</span>
                 @break
                 @case('interest_submission')
-                    <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">Interesse</span>
+                    <span class="text-xs bg-purple-50 text-purple-600 px-2 py-0.5 rounded-full font-medium">Interesse</span>
                 @break
                 @case('info_only')
-                    <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">Informação</span>
+                    <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-medium">Informação</span>
                 @break
             @endswitch
+
+            @if(!($contest->accepts_proposals ?? true))
+                <span class="text-xs bg-orange-50 text-orange-600 px-2 py-0.5 rounded-full font-medium">Sem propostas</span>
+            @endif
         </div>
 
         {{-- Footer: Location + Deadline --}}
-        <div class="flex items-center justify-between pt-3 border-t border-gray-50">
-            <span class="flex items-center gap-1 text-xs text-gray-400">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center justify-between gap-2 pt-3 border-t border-gray-50">
+            {{-- Location --}}
+            <span class="flex items-center gap-1 text-xs text-gray-400 min-w-0">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                {{ Str::limit($contest->location ?? 'Remoto', 20) }}
+                <span class="truncate">{{ Str::limit($contest->city ?? $contest->country ?? 'Remoto', 18) }}</span>
             </span>
 
-            {{-- Deadline countdown --}}
+            {{-- Deadline --}}
             @if($deadline)
-                <span class="flex items-center gap-1 text-xs font-semibold rounded-full px-2 py-0.5
-                    {{ $isExpired ? 'bg-gray-100 text-gray-400' : ($isUrgent ? 'bg-red-100 text-red-600' : 'bg-green-100 text-forest-green') }}">
+                <span class="flex-shrink-0 flex items-center gap-1 text-xs font-semibold rounded-full px-2.5 py-1
+                    {{ $isExpired ? 'bg-gray-100 text-gray-400' : ($isUrgent ? 'bg-red-100 text-red-600' : 'bg-green-50 text-forest-green') }}">
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                     @if($isExpired)
                         Expirado
                     @elseif($daysLeft === 0)
                         Hoje!
                     @elseif($daysLeft === 1)
-                        1 dia
+                        Amanhã
                     @elseif($daysLeft <= 30)
                         {{ $daysLeft }} dias
                     @else
-                        {{ $deadline->format('d/m/Y') }}
+                        {{ $deadline->format('d M Y') }}
                     @endif
                 </span>
             @endif

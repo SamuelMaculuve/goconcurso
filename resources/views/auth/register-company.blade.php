@@ -200,29 +200,15 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {{-- Country --}}
-                    <div>
-                        <label for="country" class="block text-sm font-medium text-gray-700 mb-1.5">
-                            País <span class="text-red-500">*</span>
-                        </label>
-                        <input id="country" type="text" name="country" value="{{ old('country') }}" required
-                            class="w-full rounded-lg border px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-transparent transition
-                                {{ $errors->has('country') ? 'border-red-400 bg-red-50' : 'border-gray-300' }}"
-                            placeholder="ex: Angola, Moçambique"/>
-                        @error('country')<p class="mt-1 text-xs text-red-600">{{ $message }}</p>@enderror
-                    </div>
-
-                    {{-- City --}}
-                    <div>
-                        <label for="city" class="block text-sm font-medium text-gray-700 mb-1.5">
-                            Cidade <span class="text-red-500">*</span>
-                        </label>
-                        <input id="city" type="text" name="city" value="{{ old('city') }}" required
-                            class="w-full rounded-lg border px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-forest-green focus:border-transparent transition
-                                {{ $errors->has('city') ? 'border-red-400 bg-red-50' : 'border-gray-300' }}"
-                            placeholder="Cidade principal"/>
-                        @error('city')<p class="mt-1 text-xs text-red-600">{{ $message }}</p>@enderror
-                    </div>
+                    <x-location-select
+                        country-name="country"
+                        city-name="city"
+                        :country-value="old('country', '')"
+                        :city-value="old('city', '')"
+                        :required="true"
+                        ring-color="focus:ring-forest-green/30"
+                        border-focus="focus:border-forest-green"
+                    />
 
                     {{-- Sector --}}
                     <div>

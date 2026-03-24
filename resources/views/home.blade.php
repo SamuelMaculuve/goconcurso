@@ -8,7 +8,7 @@
 @section('content')
 
 {{-- ===== HERO SECTION ===== --}}
-<section class="relative overflow-hidden" style="background: linear-gradient(135deg, #2D6A4F 0%, #1a3d2e 60%, #C0602A 100%);">
+<section class="relative overflow-hidden" style="background: #2D6A4F;">
 
     {{-- Decorative circles --}}
     <div class="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"

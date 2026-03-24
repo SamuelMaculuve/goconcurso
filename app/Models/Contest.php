@@ -15,9 +15,10 @@ class Contest extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'deadline'    => 'datetime',
-        'is_featured' => 'boolean',
-        'is_active'   => 'boolean',
+        'deadline'           => 'datetime',
+        'is_featured'        => 'boolean',
+        'is_active'          => 'boolean',
+        'accepts_proposals'  => 'boolean',
     ];
 
     public function company(): BelongsTo
