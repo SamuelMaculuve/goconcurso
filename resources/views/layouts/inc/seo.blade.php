@@ -69,6 +69,16 @@
 <link rel="shortcut icon"    type="image/x-icon" href="{{ asset('assets/img/logo-w.png') }}">
 <meta name="theme-color"     content="#C0602A">
 <meta name="msapplication-TileColor" content="#C0602A">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HGJ3XBF2CN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HGJ3XBF2CN');
+</script>
 {{--
 
 {{-- @hasSection('seo_breadcrumbs')
