@@ -143,8 +143,8 @@
                     <span class="w-1 h-5 bg-terracota rounded-full inline-block"></span>
                     Descrição do Concurso
                 </h2>
-                <div class="prose prose-sm max-w-none text-gray-600 leading-relaxed">
-                    {!! nl2br(e($contest->description ?? '')) !!}
+                <div class="prose prose-sm max-w-none prose-headings:text-gray-800 prose-a:text-forest-green prose-strong:text-gray-800 prose-ul:list-disc prose-ol:list-decimal text-gray-600 leading-relaxed">
+                    {!! $contest->description ?? '' !!}
                 </div>
             </div>
 
@@ -155,8 +155,8 @@
                     <span class="w-1 h-5 bg-golden rounded-full inline-block"></span>
                     Requisitos
                 </h2>
-                <div class="prose prose-sm max-w-none text-gray-600">
-                    {!! nl2br(e($contest->requirements)) !!}
+                <div class="prose prose-sm max-w-none prose-headings:text-gray-800 prose-a:text-forest-green prose-strong:text-gray-800 prose-ul:list-disc prose-ol:list-decimal text-gray-600">
+                    {!! $contest->requirements !!}
                 </div>
             </div>
             @endif
@@ -168,8 +168,8 @@
                     <span class="w-1 h-5 bg-forest-green rounded-full inline-block"></span>
                     Critérios de Avaliação
                 </h2>
-                <div class="prose prose-sm max-w-none text-gray-600">
-                    {!! nl2br(e($contest->benefits)) !!}
+                <div class="prose prose-sm max-w-none prose-headings:text-gray-800 prose-a:text-forest-green prose-strong:text-gray-800 prose-ul:list-disc prose-ol:list-decimal text-gray-600">
+                    {!! $contest->benefits !!}
                 </div>
             </div>
             @endif

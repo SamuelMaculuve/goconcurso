@@ -20,7 +20,7 @@ class HomeController extends Controller
             ->where('is_featured', true)
             ->with(['company', 'category'])
             ->latest()
-            ->limit(6)
+            ->limit(9)
             ->get();
 
         $latestContests = Contest::where('status', 'active')
