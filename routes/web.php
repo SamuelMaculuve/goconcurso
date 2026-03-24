@@ -52,6 +52,7 @@ Route::view('/sobre', 'pages.about')->name('about');
 Route::get('/contacto', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contacto', [HomeController::class, 'sendContact'])->name('contact.send');
 Route::get('/empresas', [HomeController::class, 'companies'])->name('companies');
+Route::get('/empresas/{slug}', [HomeController::class, 'showCompany'])->name('companies.show');
 Route::get('/ajuda', [HomeController::class, 'help'])->name('help');
 Route::get('/privacidade', [HomeController::class, 'privacy'])->name('privacy');
 Route::get('/termos', [HomeController::class, 'terms'])->name('terms');

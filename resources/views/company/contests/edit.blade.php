@@ -140,7 +140,7 @@
             <div>
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Descrição <span class="text-red-500">*</span></label>
                 <div id="editor-description" class="quill-editor rounded-xl border border-gray-200 @error('description') border-red-400 @enderror" style="min-height:160px"></div>
-                <textarea name="description" id="textarea-description" class="hidden" required>{{ old('description', $contest->description) }}</textarea>
+                <textarea name="description" id="textarea-description" class="hidden">{{ old('description', $contest->description) }}</textarea>
                 @error('description') <p class="text-xs text-red-500 mt-1">{{ $message }}</p> @enderror
             </div>
 
@@ -230,8 +230,9 @@
         ['link', 'clean']
     ];
 
-    function initQuill(editorId, textareaId, placeholder) {
+    function initQuill(editorId, textareaId, placeholder, required) {
         const textarea = document.getElementById(textareaId);
+        const wrapper  = document.getElementById(editorId);
         const quill = new Quill('#' + editorId, {
             theme: 'snow',
             placeholder: placeholder,
@@ -242,17 +243,27 @@
             quill.root.innerHTML = textarea.value;
         }
 
-        textarea.form.addEventListener('submit', function () {
-            textarea.value = quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML;
+        textarea.form.addEventListener('submit', function (e) {
+            const html = quill.root.innerHTML;
+            const empty = html === '<p><br></p>' || html.trim() === '';
+            textarea.value = empty ? '' : html;
+
+            if (required && empty) {
+                e.preventDefault();
+                wrapper.style.borderColor = '#f87171';
+                quill.root.focus();
+            } else {
+                wrapper.style.borderColor = '';
+            }
         });
 
         return quill;
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        initQuill('editor-description',  'textarea-description',  'Descreva o concurso...');
-        initQuill('editor-requirements', 'textarea-requirements', 'Liste os requisitos obrigatórios...');
-        initQuill('editor-benefits',     'textarea-benefits',     'Ex: 60% preço, 30% qualidade técnica...');
+        initQuill('editor-description',  'textarea-description',  'Descreva o concurso...', true);
+        initQuill('editor-requirements', 'textarea-requirements', 'Liste os requisitos obrigatórios...', false);
+        initQuill('editor-benefits',     'textarea-benefits',     'Ex: 60% preço, 30% qualidade técnica...', false);
     });
 })();
 </script>

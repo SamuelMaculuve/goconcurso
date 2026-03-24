@@ -109,4 +109,20 @@ class HomeController extends Controller
 
         return view('pages.companies', compact('companies'));
     }
+
+    public function showCompany(string $slug): View
+    {
+        $company = Company::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        $activeContests = $company->contests()
+            ->where('status', 'active')
+            ->with('category')
+            ->latest()
+            ->take(6)
+            ->get();
+
+        return view('companies.show', compact('company', 'activeContests'));
+    }
 }

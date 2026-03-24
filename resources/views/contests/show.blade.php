@@ -264,7 +264,8 @@
                 @if($contest->company->description ?? false)
                     <p class="text-xs text-gray-500 leading-relaxed line-clamp-3">{{ $contest->company->description }}</p>
                 @endif
-                <a href="#" class="block mt-3 text-xs text-forest-green font-semibold hover:underline">
+                <a href="{{ route('companies.show', $contest->company->slug) }}"
+                   class="block mt-3 text-xs text-forest-green font-semibold hover:underline">
                     Ver perfil da empresa &rarr;
                 </a>
             </div>
