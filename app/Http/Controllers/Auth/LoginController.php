@@ -34,7 +34,7 @@ class LoginController extends Controller
             }
 
             if ($user->hasRole('company')) {
-                return redirect()->intended('/company');
+                return redirect()->intended('/empresa/dashboard');
             }
 
             return redirect()->intended('/');

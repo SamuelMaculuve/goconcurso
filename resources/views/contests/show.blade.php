@@ -135,7 +135,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
         {{-- ===== LEFT COLUMN – MAIN CONTENT ===== --}}
-        <div class="lg:col-span-2 space-y-8">
+        <div class="lg:col-span-2 space-y-8 min-w-0">
 
             {{-- Description --}}
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
@@ -177,7 +177,7 @@
         </div>
 
         {{-- ===== RIGHT COLUMN – SIDEBAR ===== --}}
-        <div class="space-y-6">
+        <div class="space-y-6 lg:sticky lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto">
 
             {{-- Action card based on participation_type --}}
             <div class="bg-white rounded-2xl border border-gray-200 shadow-md p-6">
@@ -186,17 +186,24 @@
                 @switch($contest->participation_type ?? 'info_only')
 
                     @case('info_only')
-                        <p class="text-sm text-gray-500 mb-4">
-                            Este concurso é gerido externamente. Clique para aceder ao site oficial.
-                        </p>
-                        <a href="{{ $contest->external_url ?? '#' }}" target="_blank" rel="noopener"
-                           class="block w-full text-center bg-terracota text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-orange-700 transition">
-                            Aceder ao Concurso
-                            <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                            </svg>
-                        </a>
+                        @if($contest->external_url)
+                            <p class="text-sm text-gray-500 mb-4">
+                                Este concurso é gerido externamente. Clique para aceder ao site oficial.
+                            </p>
+                            <a href="{{ $contest->external_url }}" target="_blank" rel="noopener noreferrer"
+                               class="block w-full text-center bg-terracota text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-orange-700 transition">
+                                Aceder ao Concurso
+                                <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                                </svg>
+                            </a>
+                        @else
+                            <div class="text-center py-4">
+                                <p class="text-sm text-gray-500">Este concurso é apenas informativo.</p>
+                                <p class="text-xs text-gray-400 mt-1">Consulte os documentos do concurso para mais detalhes.</p>
+                            </div>
+                        @endif
                     @break
 
                     @case('interest_submission')
