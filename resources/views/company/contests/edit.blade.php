@@ -21,7 +21,7 @@
     <form method="POST" action="{{ route('company.contests.update', $contest->id) }}" enctype="multipart/form-data"
           class="space-y-6">
         @csrf
-        @method('PATCH')
+        @method('PUT')
 
         {{-- Basic info --}}
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-5">
@@ -183,9 +183,11 @@
                     <label class="block text-sm font-semibold text-gray-700 mb-1.5">Moeda</label>
                     <select name="budget_currency"
                             class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-terracota/30 focus:border-terracota transition">
-                        @foreach(['USD','AOA','EUR','GBP','ZAR','BRL'] as $cur)
-                            <option value="{{ $cur }}" {{ old('budget_currency', $contest->budget_currency ?? 'USD') === $cur ? 'selected' : '' }}>{{ $cur }}</option>
-                        @endforeach
+                        <option value="MZN" {{ old('budget_currency', $contest->budget_currency ?? 'MZN') === 'MZN' ? 'selected' : '' }}>MZN – Metical Moçambicano</option>
+                        <option value="USD" {{ old('budget_currency', $contest->budget_currency ?? 'MZN') === 'USD' ? 'selected' : '' }}>USD – Dólar Americano</option>
+                        <option value="AOA" {{ old('budget_currency', $contest->budget_currency ?? 'MZN') === 'AOA' ? 'selected' : '' }}>AOA – Kwanza Angolano</option>
+                        <option value="EUR" {{ old('budget_currency', $contest->budget_currency ?? 'MZN') === 'EUR' ? 'selected' : '' }}>EUR – Euro</option>
+                        <option value="ZAR" {{ old('budget_currency', $contest->budget_currency ?? 'MZN') === 'ZAR' ? 'selected' : '' }}>ZAR – Rand Sul-Africano</option>
                     </select>
                 </div>
             </div>
