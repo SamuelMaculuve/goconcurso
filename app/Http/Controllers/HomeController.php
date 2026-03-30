@@ -16,20 +16,12 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $featuredContests = Contest::where('status', 'active')
-            ->where('is_featured', true)
+        $contests = Contest::where('status', 'active')
+            ->where('deadline', '>', now())
             ->with(['company', 'category'])
             ->latest()
             ->limit(9)
             ->get();
-
-        $latestContests = Contest::where('status', 'active')
-            ->with(['company', 'category'])
-            ->latest()
-            ->limit(6)
-            ->get();
-
-        $contests = $featuredContests->isEmpty() ? $latestContests : $featuredContests;
 
         $categories = ContestCategory::where('is_active', true)
             ->withCount(['contests' => fn($q) => $q->where('status', 'active')])
@@ -49,7 +41,7 @@ class HomeController extends Controller
             'candidates'      => User::role('candidate')->count(),
         ];
 
-        return view('home', compact('contests', 'featuredContests', 'categories', 'ads', 'stats'));
+        return view('home', compact('contests', 'categories', 'ads', 'stats'));
     }
 
     public function contact(): View
